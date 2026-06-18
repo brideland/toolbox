@@ -6,7 +6,7 @@ package moreio_test
 import (
 	"testing"
 
-	"github.com/layer8co/toolbox/io/moreio"
+	"github.com/brideland/toolbox/io/moreio"
 )
 
 func BenchmarkAdapterWriter_Write(b *testing.B) {

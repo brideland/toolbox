@@ -1,4 +1,4 @@
-module github.com/layer8co/toolbox
+module github.com/brideland/toolbox
 
 go 1.24.0
 

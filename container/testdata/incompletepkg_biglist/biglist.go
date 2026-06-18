@@ -5,7 +5,7 @@
 package biglist
 
 import (
-	"github.com/layer8co/toolbox/math/intmath"
+	"github.com/brideland/toolbox/math/intmath"
 )
 
 type List[T any] struct {

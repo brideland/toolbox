@@ -12,7 +12,7 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/layer8co/toolbox/must"
+	"github.com/brideland/toolbox/must"
 	"golang.org/x/crypto/chacha20"
 )
 

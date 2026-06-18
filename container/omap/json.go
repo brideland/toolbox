@@ -9,7 +9,7 @@ import (
 	"fmt"
 	"strconv"
 
-	"github.com/layer8co/toolbox/must"
+	"github.com/brideland/toolbox/must"
 )
 
 func (m Map[K, V]) MarshalJSON() ([]byte, error) {

@@ -13,7 +13,7 @@ import (
 	"testing"
 
 	"github.com/google/go-cmp/cmp"
-	"github.com/layer8co/toolbox/container/ringbuf"
+	"github.com/brideland/toolbox/container/ringbuf"
 )
 
 type testCase struct {
