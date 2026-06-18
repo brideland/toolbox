@@ -9,8 +9,8 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/layer8co/toolbox/io/moreio"
-	"github.com/layer8co/toolbox/os/oslite"
+	"github.com/brideland/toolbox/io/moreio"
+	"github.com/brideland/toolbox/os/oslite"
 )
 
 var null = []byte{0}

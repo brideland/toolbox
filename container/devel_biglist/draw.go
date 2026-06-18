@@ -10,8 +10,8 @@ import (
 	"io"
 	"strings"
 
-	"github.com/layer8co/toolbox/io/moreio"
-	"github.com/layer8co/toolbox/math/intmath"
+	"github.com/brideland/toolbox/io/moreio"
+	"github.com/brideland/toolbox/math/intmath"
 )
 
 const (

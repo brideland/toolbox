@@ -9,8 +9,8 @@ import (
 	"testing"
 
 	"github.com/google/go-cmp/cmp"
-	sc "github.com/layer8co/toolbox/crypto/streamcrypt"
-	"github.com/layer8co/toolbox/must"
+	sc "github.com/brideland/toolbox/crypto/streamcrypt"
+	"github.com/brideland/toolbox/must"
 )
 
 func TestStreamCrypt(t *testing.T) {
