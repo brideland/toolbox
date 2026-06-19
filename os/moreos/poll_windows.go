@@ -29,5 +29,8 @@ func poll(srcFd, cancelFd uintptr) error {
 		if ev == windows.WAIT_OBJECT_0+1 {
 			return ErrReadCanceled
 		}
+		if testingPollWindowsEvChan != nil {
+			testingPollWindowsEvChan <- ev
+		}
 	}
 }

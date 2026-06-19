@@ -5,6 +5,8 @@ import (
 	"io"
 )
 
+var testingPollWindowsEvChan chan uint32
+
 var (
 	ErrReadCanceled   = errors.New("read canceled")
 	ErrNotImplemented = errors.New("not implemented")
