@@ -1,6 +1,7 @@
 package moreos_test
 
 import (
+	"fmt"
 	"os"
 	"testing"
 	"time"
@@ -53,19 +54,42 @@ func TestCancelReader_CancelBefore(t *testing.T) {
 
 	c.Cancel()
 
-	b := make([]byte, 1)
+	ch := make(chan any)
 
-	for i := range 2 {
-		if i > 0 {
-			time.Sleep(100 * time.Millisecond)
+	time.AfterFunc(time.Second, func() {
+		ch <- "timeout"
+	})
+
+	go func() {
+		b := make([]byte, 1)
+		for i := range 2 {
+			if i > 0 {
+				time.Sleep(100 * time.Millisecond)
+			}
+			_, err = c.Read(b)
+			if err != moreos.ErrReadCanceled {
+				ch <- fmt.Errorf(
+					"incorrect error: want ErrReadCanceled, got %q",
+					err,
+				)
+			}
 		}
-		_, err = c.Read(b)
-		if err != moreos.ErrReadCanceled {
-			t.Fatalf(
-				"incorrect error: want ErrReadCanceled, got %q",
-				err,
-			)
+		ch <- "success"
+	}()
+
+	switch v := (<-ch).(type) {
+	case error:
+		t.Fatal(v)
+	case string:
+		if v == "success" {
+			return
 		}
+		if v == "timeout" {
+			t.Fatal("test timed out")
+		}
+		panic("unreachable")
+	default:
+		panic("unreachable")
 	}
 }
 
@@ -86,18 +110,41 @@ func TestCancelReader_CancelDuring(t *testing.T) {
 		c.Cancel()
 	}()
 
-	b := make([]byte, 1)
+	ch := make(chan any)
 
-	for i := range 2 {
-		if i > 0 {
-			time.Sleep(100 * time.Millisecond)
+	time.AfterFunc(time.Second, func() {
+		ch <- "timeout"
+	})
+
+	go func() {
+		b := make([]byte, 1)
+		for i := range 2 {
+			if i > 0 {
+				time.Sleep(100 * time.Millisecond)
+			}
+			_, err = c.Read(b)
+			if err != moreos.ErrReadCanceled {
+				ch <- fmt.Errorf(
+					"incorrect error: want ErrReadCanceled, got %q",
+					err,
+				)
+			}
 		}
-		_, err = c.Read(b)
-		if err != moreos.ErrReadCanceled {
-			t.Fatalf(
-				"incorrect error: want ErrReadCanceled, got %q",
-				err,
-			)
+		ch <- "success"
+	}()
+
+	switch v := (<-ch).(type) {
+	case error:
+		t.Fatal(v)
+	case string:
+		if v == "success" {
+			return
 		}
+		if v == "timeout" {
+			t.Fatal("test timed out")
+		}
+		panic("unreachable")
+	default:
+		panic("unreachable")
 	}
 }
