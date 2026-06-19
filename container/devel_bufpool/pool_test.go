@@ -9,7 +9,7 @@ import (
 	"sync"
 	"testing"
 
-	bufpool "github.com/brideland/toolbox/container/testdata/incompletepkg_bufpool"
+	bufpool "github.com/brideland/toolbox/container/devel_bufpool"
 )
 
 // TODO: The tests need to be closer to the real world.
